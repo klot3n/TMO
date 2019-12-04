@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">TMO</string>
+    <string name="app_name_title">Техника модификации \n опыта</string>
+    <string name="new_process">Новый процесс</string>
+    <string name="history_process">История проработок</string>
+    <string name="app_description">Как и зачем? \n (Перед тем, как начать)</string>
+    <string name="options">Настройки</string>
+    <string name="money_support">Поддержать проект</string>
+    <string name="name_exp">Наимнование \n опыта</string>
+    <string name="time_exp">Когда это происходит?</string>
+    <string name="location_exp">Где это происходит?</string>
+    <string name="participant_exp">Кто важные участники этого события?</string>
+    <string name="description_exp">Кратко опишите этот опыт</string>
+    <string name="title_rating_exp">Оцените этот опыт от -10 до 10</string>
+    <string name="rating">Оценка</string>
+    <string name="modify_exp">Что нужно изменить в этом опыте, чтобы он стал более примлем для Вас?</string>
+    <string name="first_test_modify_exp">Что еще можно изменить в этом опыте, чтобы он стал еще более приятен для Вас?</string>
+    <string name="second_test_modify_exp">Что еще можно изменить в этом опыте, чтобы он стал более чем +10 для Вас?</string>
+    <string name="description_new_exp">Опишите измененный опыт так, как будто он происходит прямо сейчас</string>
+    <string name="buton_back">Назад</string>
+    <string name="buton_end">Завершить процесс \n и сохранить данные</string>
+</resources>
