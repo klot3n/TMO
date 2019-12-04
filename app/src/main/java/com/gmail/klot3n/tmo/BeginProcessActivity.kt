@@ -35,21 +35,35 @@ class BeginProcessActivity : AppCompatActivity() {
         })
 
         ok.setOnClickListener {
-            kotlin.run {
-                val db = TMODatabaseHelper(this).writableDatabase
-                val values = ContentValues()
-                values.put("NAME", name_exp.toString())
-                values.put("TIME", time_exp.toString())
-                values.put("DESCRIPTION", location_exp.toString()+"\n"
-                           +participant_exp.toString()+"\n"
-                           +description_exp.toString())
-                values.put("RATING", progressRating)
-                db.insert(TMODatabaseHelper.TABLE_NAME, null, values)
-                db.close()
+
+            //проверка на повтор имени в Database
+            var name=name_exp.text.toString()
+            var num = 0
+            var cursor = TMODatabaseHelper(this).readableDatabase.
+                query("tmo_DB", arrayOf("_id", "NAME"),"NAME = ?",
+                    arrayOf(name_exp.text.toString()), null, null, null)
+            while (cursor.moveToFirst()) {
+                name = name_exp.text.toString()+"_${++num}"
+                cursor=TMODatabaseHelper(this).readableDatabase.
+                    query("tmo_DB", arrayOf("NAME"), "NAME=?", arrayOf(name), null, null, null)
             }
+            cursor.close()
+
+            //запись в Database
+            val db = TMODatabaseHelper(this)
+            db.addData(
+                db.writableDatabase, name, time_exp.text.toString(),
+                "  " + location_exp.text.toString() + "\n  "
+                        + participant_exp.text.toString() + "\n  "
+                        + description_exp.text.toString(),
+                        progressRating-10
+            )
+            db.close()
+
+
                 val i = Intent(this, ProcessActivity::class.java)
                 i.putExtra("progress", progressRating)
-                i.putExtra("name_exp", name_exp.text.toString())
+                i.putExtra("name_exp", name)
                 i.putExtra("time_exp", time_exp.text.toString())
                 startActivity(i)
             }

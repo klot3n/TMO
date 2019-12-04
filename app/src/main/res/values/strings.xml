@@ -19,4 +19,5 @@
     <string name="description_new_exp">Опишите измененный опыт так, как будто он происходит прямо сейчас</string>
     <string name="buton_back">Назад</string>
     <string name="buton_end">Завершить процесс \n и сохранить данные</string>
+    <string name="delete_but_arch">Удалить</string>
 </resources>

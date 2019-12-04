@@ -11,6 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //удалить таблицу
+//        var db=TMODatabaseHelper(this).writableDatabase
+//        db.execSQL("DROP TABLE IF EXISTS tmoDB")
+
         new_process.setOnClickListener {
             val i =Intent(this,BeginProcessActivity::class.java)
             startActivity(i)
