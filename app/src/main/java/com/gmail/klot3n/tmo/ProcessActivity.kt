@@ -80,6 +80,10 @@ class ProcessActivity : AppCompatActivity() {
 
         }
 
+        main_menu_2.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+
     }
 
     fun addDataToTable() {

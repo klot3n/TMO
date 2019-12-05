@@ -148,7 +148,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
 
             <TextView
@@ -156,17 +156,29 @@
                     android:textSize="20sp"
                     android:textColor="@color/colorText"
                     android:text="@string/rating"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:gravity="center_horizontal"
                     android:layout_height="wrap_content"/>
-            <Button
-                    android:id="@+id/ok"
-                    android:textSize="16sp"
-                    android:text="OK"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"/>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            android:orientation="horizontal">
+                <Button
+                        android:id="@+id/main_menu_1"
+                        android:textSize="16sp"
+                        android:text="@string/back_to_main_menu"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/ok"
+                        android:textSize="16sp"
+                        android:text="@string/button_next"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

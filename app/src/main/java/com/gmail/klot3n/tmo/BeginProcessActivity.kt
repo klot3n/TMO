@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
@@ -33,6 +34,10 @@ class BeginProcessActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
 
         })
+
+        main_menu_1.setOnClickListener {
+            startActivity(Intent(this,MainActivity::class.java))
+        }
 
         ok.setOnClickListener {
 

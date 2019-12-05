@@ -22,7 +22,8 @@
                   android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".EndProcessActivity"
                   android:parentActivityName=".ProcessActivity"/>
-        <activity android:name=".ArchiveListActivity"/>
+        <activity android:name=".ArchiveListActivity"
+        android:parentActivityName=".MainActivity"/>
         <activity android:name=".ArchiveDetailActivity"/>
     </application>
 
