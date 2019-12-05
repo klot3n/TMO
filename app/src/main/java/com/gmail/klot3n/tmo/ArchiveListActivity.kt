@@ -37,9 +37,8 @@ class ArchiveListActivity: AppCompatActivity(){
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        cursor.close()
-        db.close()
+    override fun onBackPressed() {
+        startActivity(Intent(this,MainActivity::class.java))
+
     }
 }

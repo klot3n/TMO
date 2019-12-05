@@ -17,6 +17,7 @@ import kotlin.properties.Delegates
 class BeginProcessActivity : AppCompatActivity() {
 
     var progressRating = 10
+    var countHighRating = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,7 @@ class BeginProcessActivity : AppCompatActivity() {
         }
 
         ok.setOnClickListener {
-
+            if (progressRating-10 ==10) countHighRating=1
             //проверка на повтор имени в Database
             var name=name_exp.text.toString()
             var num = 0
@@ -61,7 +62,7 @@ class BeginProcessActivity : AppCompatActivity() {
                 "  " + location_exp.text.toString() + "\n  "
                         + participant_exp.text.toString() + "\n  "
                         + description_exp.text.toString(),
-                        progressRating-10
+                        progressRating-10, countHighRating
             )
             db.close()
 
@@ -70,6 +71,7 @@ class BeginProcessActivity : AppCompatActivity() {
                 i.putExtra("progress", progressRating)
                 i.putExtra("name_exp", name)
                 i.putExtra("time_exp", time_exp.text.toString())
+            i.putExtra("countHiRating", countHighRating)
                 startActivity(i)
             }
         }

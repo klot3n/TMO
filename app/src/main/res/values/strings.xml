@@ -22,4 +22,5 @@
     <string name="delete_but_arch">Удалить</string>
     <string name="back_to_main_menu">Главное меню</string>
     <string name="button_next">Далее</string>
+    <string name="resume_but_arch">Продолжить</string>
 </resources>

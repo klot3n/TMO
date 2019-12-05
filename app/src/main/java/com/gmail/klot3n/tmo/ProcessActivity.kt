@@ -21,11 +21,17 @@ class ProcessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_process)
 
+        countHighRating = intent.getIntExtra("countHiRating",0)
         this.progressRating = intent.getIntExtra("progress", 10)
         name_exp_filled.text = intent.getStringExtra("name_exp")
         time_exp_filled.text = intent.getStringExtra("time_exp")
         rating_exp.progress = progressRating!!.toInt()
         rating_view.text = "Оценка: ${intent.getIntExtra("progress", 10) - 10}"
+        when(countHighRating){
+            0 ->  title_modify_exp.text = getString(R.string.modify_exp)
+            1 -> title_modify_exp.text = getString(R.string.first_test_modify_exp)
+            2 -> title_modify_exp.text = getString(R.string.second_test_modify_exp)
+        }
 
         rating_exp.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -44,26 +50,26 @@ class ProcessActivity : AppCompatActivity() {
             when {
 
                 progressRating!! < 20 -> {
+                    countHighRating = 0
                     addDataToTable()
                     modify_exp.text = emptyEditText
                     description_new_exp.text = Editable.Factory.getInstance().newEditable("") //Это как вариант
                     title_modify_exp.text = getString(R.string.modify_exp)
-                    countHighRating = 0
                 }
                 progressRating == 20 && countHighRating == 0 -> {
+                    ++countHighRating
                     addDataToTable()
                     modify_exp.text = emptyEditText
                     description_new_exp.text = emptyEditText
                     title_modify_exp.text = getString(R.string.first_test_modify_exp)
-                    countHighRating++
                 }
 
                 progressRating == 20 && countHighRating == 1 -> {
+                    ++countHighRating
                     addDataToTable()
                     modify_exp.text = emptyEditText
                     description_new_exp.text = emptyEditText
                     title_modify_exp.text = getString(R.string.second_test_modify_exp)
-                    countHighRating++
                 }
 
                 progressRating == 20 && countHighRating > 1 -> {
@@ -92,7 +98,8 @@ class ProcessActivity : AppCompatActivity() {
             db.writableDatabase, name_exp_filled.text.toString(), time_exp_filled.text.toString(),
             "  " + modify_exp.text.toString() + "\n  "
                     + description_new_exp.text.toString(),
-            this.progressRating!! - 10
+            this.progressRating!! - 10,
+            countHighRating
         )
         db.close()
     }

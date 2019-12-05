@@ -16,8 +16,8 @@ class ArchiveDetailActivity:AppCompatActivity() {
         val nameItem=intent.getStringExtra("nameItem")
 
         var cursor = TMODatabaseHelper(this).readableDatabase.
-            query("tmo_DB", arrayOf("_id", "NAME","TIME","DESCRIPTION","RATING"),"NAME = ?",
-                arrayOf(nameItem), null, null, null)
+            query("tmo_DB", arrayOf("_id", "NAME","TIME","DESCRIPTION","RATING","CNT_HI_RATING"),"NAME = ?",
+                arrayOf(nameItem), null, null, "_id ASC")
 
         var expArch=""
         while (cursor.moveToNext()){
@@ -27,12 +27,23 @@ class ArchiveDetailActivity:AppCompatActivity() {
         name_arch.text=cursor.getString(1)
         time_arch.text=cursor.getString(2)
         exp_arch.text=expArch
-        cursor.close()
+
+        resume_but_arch.setOnClickListener {
+            cursor.moveToLast()
+            val i = Intent(this, ProcessActivity::class.java)
+            i.putExtra("progress", cursor.getInt(4))
+            i.putExtra("name_exp", cursor.getString(1))
+            i.putExtra("time_exp", cursor.getString(2))
+            i.putExtra("countHiRating", cursor.getInt(5))
+            startActivity(i)
+            cursor.close()
+        }
 
         delete_but_arch.setOnClickListener {
             val db=TMODatabaseHelper(this).writableDatabase
             db.delete(TABLE_NAME, "NAME = ?", arrayOf(nameItem))
             db.close()
+            cursor.close()
             val i = Intent(this, ArchiveListActivity::class.java)
             startActivity(i)
         }
